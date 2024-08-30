@@ -1,0 +1,1 @@
+serverless invoke local --function first --path pubsub-event.json

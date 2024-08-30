@@ -1,0 +1,59 @@
+service: multi-cloud-service
+
+custom:
+  stage: aws
+
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: ***
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: ***
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+ 
+  environment:
+    DB_HOST: ${.env:DB_HOST}
+    DB_NAME: ${.env:DB_NAME}
+    DB_USER: ${.env:DB_USER}
+    DB_PASS: ${.env:DB_PASS}
+    DB_PORT: ${.env:DB_PORT}
+
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+
+functions:
+  processWriteAWS:
+    handler: dist/index.processWriteAWS
+    events:
+      - sns:
+          topicName: awsProcessWrite
+          displayName: 'SNS Topic'
+
+resources:
+  Resources:
+    MySNSTopic:
+      Type: 'AWS::SNS::Topic'
+      Properties:
+        TopicName: awsProcessWrites
+
+    MySQSQueue:
+      Type: 'AWS::SQS::Queue'
+      Properties:
+        QueueName: processWriteQueue-aws
+
+    MySQSToSNSTopic:
+      Type: 'AWS::SNS::Subscription'
+      Properties:
+        Endpoint:
+          Fn::GetAtt:
+            - MySQSQueue
+            - Arn
+        Protocol: sqs
+        TopicArn:
+          Ref: MySNSTopic

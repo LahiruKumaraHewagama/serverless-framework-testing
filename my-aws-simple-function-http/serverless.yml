@@ -1,0 +1,23 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: ***
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: ***
+
+
+service: my-aws-simple-function-test
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+frameworkVersion: '3'
+
+functions:
+  httpHandler:
+    handler: handler.httpHandler
+    events:
+      - http:
+          path: path
+          method: get
+
+

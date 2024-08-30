@@ -1,0 +1,11 @@
+{
+  "message": {
+    "data": "eyJjdXJyZW5jeSI6ICJVU0QiLCAicHJpY2UiOiAiNTAwMDAifQ==",
+    "attributes": {
+      "key": "value"
+    },
+    "messageId": "1234567890",
+    "publishTime": "2024-08-29T12:34:56.789Z"
+  },
+  "subscription": ""
+}

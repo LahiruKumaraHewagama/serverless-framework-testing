@@ -1,0 +1,11 @@
+{
+  "Records": [
+    {
+      "Sns": {
+        "Message": "{\"job_type\": \"currency_price_update\", \"price_data\": {\"currency_id\": \"1\", \"pricing_source_id\": \"1\", \"price_usdc\": 50000, \"checked_timestamp\": \"2024-08-16T09:15:30.123Z\"}}",
+        "TopicArn": "arn:aws:sns:us-east-1:000000000000:awsProcessWrite"
+      }
+    }
+  ]
+}
+

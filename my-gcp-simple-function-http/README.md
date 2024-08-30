@@ -1,0 +1,1 @@
+serverless invoke local --function first --data '{"query":{"message":"Hello from local invocation!"}}'
